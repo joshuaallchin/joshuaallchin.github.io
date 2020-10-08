@@ -21,7 +21,7 @@
   {% comment %}
     Check if we have tag or search pages page active before linking to it.
   {% endcomment %}
-  {% assign tags_page = false %}
+  {% assign tags_page = true %}
   {% assign search_page = false %}
   {% for node in site.pages %}
     {% if node.layout == "tags" %}
