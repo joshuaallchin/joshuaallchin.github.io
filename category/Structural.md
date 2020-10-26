@@ -3,9 +3,4 @@ layout: category
 title: Structural
 ---
 
-Sample category page. You need to create a page for each category.
-The category is inferred from the title of the page, but you can also
-specify it with the `category` attribute in the front matter.
-
-
-Posts get listed below here.
+Below are a few summaries of jobs in which I have played a significant role in during my 2 years within a structural engineering company, a role I took during my first year of university with no prior experience in the field.
