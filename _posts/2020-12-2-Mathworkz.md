@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Post: Video (YouTube)"
+title: "Post: Videoz (YouTube)"
 categories:
   - Post Formats
 tags:
