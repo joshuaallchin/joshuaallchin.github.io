@@ -9,7 +9,7 @@ last_modified_at: 2017-03-23T15:33:37-04:00
 ---
 
 <div class="embed-responsive embed-responsive-16by9">
-  <iframe width="640" height="360" src="https://www.linkedin.com/posts/joshua-allchin-022362175_drones-simulink-matlab-activity-6732224398251704320-St8_;" frameborder="0" allowfullscreen></iframe>
+  <iframe width="640" height="360" src="https://streamable.com/hjp93r;" frameborder="0" allowfullscreen></iframe>
 </div>
 
 This post tests YouTube video embeds.
