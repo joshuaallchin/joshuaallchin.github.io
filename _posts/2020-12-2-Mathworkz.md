@@ -9,7 +9,7 @@ last_modified_at: 2017-03-23T15:33:37-04:00
 ---
 
 <div class="embed-responsive embed-responsive-16by9">
-  <iframe width="640" height="360" src="https://streamable.com/hjp93r;" frameborder="0" allowfullscreen></iframe>
+  <iframe width="640" height="360" src="https://youtu.be/gfnBs7dARIM;" frameborder="0" allowfullscreen></iframe>
 </div>
 
 This post tests YouTube video embeds.
