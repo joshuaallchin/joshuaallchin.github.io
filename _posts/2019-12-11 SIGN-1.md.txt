@@ -1,0 +1,32 @@
+---
+layout: post
+title: "Sign"
+excerpt_separator: "<!--more-->"
+categories: 
+  - "Structural"
+tags:
+  - "STRAND7"
+  - "SPACEGASS"
+  - "EXCEL"
+---
+
+![Elevation](/assets/SIGN-1.jpg)
+<!--more-->
+## Description
+Dynamic Analyses run for a newly erected sign that had structurally failed. A series of modal analyses found the source of the problem to be undersized members for the wind loading applied.
+
+### Assumptions
+
+![Comp](/assets/SIGN-2.jpg)
+
+### SpaceGass Model
+
+![SG](/assets/SIGN-3.jpg)
+
+### Strand7 Model
+
+![S7](/assets/SIGN-4.jpg)
+
+Strand7 does not have a simple way to display an entire modal analysis in a similar manner to SpaceGass but the output can be ported in to EXCEL for graphic presentation.
+
+![EX](/assets/SIGN-5.jpg)
