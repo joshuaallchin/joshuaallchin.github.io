@@ -1,0 +1,39 @@
+---
+layout: post
+title: "Childcare Centre"
+excerpt_separator: "<!--more-->"
+categories: 
+  - "Structural"
+tags:
+  - "RAPT"
+  - "SPACEGASS"
+  - "EXCEL"
+  - "BUILT"
+---
+
+![Elevation](/assets/CHILD-10.jpg)
+<!--more-->
+## Description
+Footings and primary structural elements were designed for this Centre, with the steel facade trusses being outsourced to another party.
+
+### Excel Footing Computations
+![Comp0](/assets/CHILD-1.jpg)
+![Comp](/assets/CHILD-2.jpg)
+![Comp1](/assets/CHILD-3.jpg)
+![Comp2](/assets/CHILD-4.jpg)
+![Comp3](/assets/CHILD-54.jpg)
+
+### RAPT Beam/Slab Comps
+
+![R1](/assets/CHILD-6.jpg)
+![R2](/assets/CHILD-7.jpg)
+
+### Excel Retaining Computations
+
+![Ret1](/assets/CHILD-8.jpg)
+![Ret2](/assets/CHILD-9.jpg)
+
+### Inspection Photos
+
+![I1](/assets/CHILD-11.jpg)
+![I2](/assets/CHILD-12.jpg)
