@@ -20,9 +20,9 @@ author:
   url:            https://twitter.com/fongandrewc
   
 
-google_analytics: 263974794
+google_analytics: 2347397798
 
-paginate:         5
+paginate:         10
 # paginate_path:    '/page:num'
                     # Or '/blog/page:num' if you want to move your index pages
 
