@@ -18,6 +18,9 @@ remote_theme:     fongandrew/hydeout
 author:
   name:           'Andrew Fong'
   url:            https://twitter.com/fongandrewc
+  
+
+google_analytics: G-BNYM660HF1
 
 paginate:         5
 # paginate_path:    '/page:num'
