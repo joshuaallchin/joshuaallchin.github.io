@@ -26,7 +26,7 @@ __University of Melbourne.__
 
 **Master of Engineering (Mechanical with Aerospace)**
 
-*Coursework* - Product Development & Management, Corporate Finance, Project Management, Strategic Marketing Management, Data Science Applications, Business Intelligence Technologies & Big Data Analytics, Software Product Management, UX Design 
+*Coursework* - turbulence, fluid mechanics, propulsion, aeroelasticity and aerospace control
 
 
 ### Honors & Achievements
@@ -34,11 +34,7 @@ __University of Melbourne.__
 - University of Melbourne Deans List (2019)
 - Placed within Australian top 5 in Mathworks Minidrone Competition
 
-### MOOCs 
-
-- Natural Language Processing with Deep Learning (Stanford University, *Currently*)
-
 
 ### Key Skills/Interests 
 
-* Python - ipython, scikit-learn, pytorch, tensor-flow, numpy, seaborne, pandas, lxml, NLTK, requests, sqlite3.
+* Aerospace
