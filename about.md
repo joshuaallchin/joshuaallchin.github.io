@@ -9,7 +9,7 @@ Last updated on 24th of Feb, 2021
 ```
 
 An engineer striving to make the world a better place to live in, passionate about how technology can improve the lives of those most in need. 
-![Action](/assets/Personal/Fibreglass.jpg)
+![Action](/assets/Personal/Fibreglass.JPG)
 
 ### Work Experience
 
