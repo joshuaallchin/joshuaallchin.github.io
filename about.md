@@ -6,7 +6,18 @@ sidebar_link: true
 
 [comment]: <> (This is a comment, it will not be included)
 
+[//]: #( SACDAasdsa
+sadasdasdas
+asd)
+
 [//]: #( SACDA)
+
+---
+# comment
+sadasdsdsdsdsdsd
+# comment
+---
+
 ```yaml
 Last updated on 24th of Feb, 2021
 ```
