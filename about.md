@@ -4,27 +4,37 @@ title: About
 sidebar_link: true
 ---
 
-asdsa
-[comment]: <> (This is a comment, it will not be included)
-
-[//]: #( SACDAasdsa
-sadasdasdas
-asd)
-
-[//]: #( SACDA)
-
----
-# comment
-sadasdsdsdsdsdsd
-# comment
----
-
-```yaml
-Last updated on 24th of Feb, 2021
-```
-
 An engineer striving to make the world a better place to live in, passionate about how technology can improve the lives of those most in need. 
 ![Action](/assets/Personal/Fibreglass.JPG)
+
+### Education
+
+`2021-`
+__University of Melbourne__
+
+**Master of Engineering (Mechanical with Aerospace)**
+
+*Coursework* - turbulence, fluid mechanics, propulsion, aeroelasticity and aerospace control
+
+`2018-2020`
+__University of Melbourne.__
+
+**Bachelor of Science (Mechanical & Electrical Systems)**
+
+*Coursework* - mathematical modelling and abstraction, problem-solving and design skills as a basis for understanding electrical phenomena, construction of simulations and laboratory experiments
+
+### Honors & Achievements
+
+- University of Melbourne Deans List 
+- Finalist in the Australian Mathworks Minidrone Competition
+
+### Key Skills/Interests 
+
+* Aerospace
+* Humanitarian
+
+<!---
+
 
 ### Work Experience
 
@@ -55,29 +65,6 @@ __Holden Special Vehicles__
 -	Kept a clean, safe work area
 
 
-### Education
 
-`2021-`
-__University of Melbourne__
+-->
 
-**Master of Engineering (Mechanical with Aerospace)**
-
-*Coursework* - turbulence, fluid mechanics, propulsion, aeroelasticity and aerospace control
-
-`2018-2020`
-__University of Melbourne.__
-
-**Bachelor of Science (Mechanical & Electrical Systems)**
-
-*Coursework* - mathematical modelling and abstraction, problem-solving and design skills as a basis for understanding electrical phenomena, construction of simulations and laboratory experiments
-
-### Honors & Achievements
-
-- University of Melbourne Deans List (2018)
-- Placed within Australian top 5 in Mathworks Minidrone Competition
-
-
-### Key Skills/Interests 
-
-* Aerospace
-* Humanitarian
