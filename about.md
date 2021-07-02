@@ -4,6 +4,9 @@ title: About
 sidebar_link: true
 ---
 
+[comment]: <> (This is a comment, it will not be included)
+
+[//]: #( SACDA)
 ```yaml
 Last updated on 24th of Feb, 2021
 ```
