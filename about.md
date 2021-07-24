@@ -10,20 +10,20 @@ An engineer striving to make the world a better place to live in, passionate abo
 ### Education
 
 `2021-`
-__University of Melbourne__
+__Master of Engineering (Mechanical with Aerospace)__
 
-**Master of Engineering (Mechanical with Aerospace)**
+
 
 *Coursework* - turbulence, fluid mechanics, propulsion, aeroelasticity and aerospace control
 
 `2018-2020`
-__University of Melbourne.__
+__Bachelor of Science (Mechanical & Electrical Systems)__
 
-**Bachelor of Science (Mechanical & Electrical Systems)**
+**University of Melbourne**
 
 *Coursework* - mathematical modelling and abstraction, problem-solving and design skills as a basis for understanding electrical phenomena, construction of simulations and laboratory experiments
 
-### Honors & Achievements
+### Honours & Achievements
 
 - University of Melbourne Deans List 
 - Finalist in the Australian Mathworks Minidrone Competition
