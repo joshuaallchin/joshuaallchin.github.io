@@ -5,7 +5,7 @@ sidebar_link: true
 ---
 
 An engineer striving to make the world a better place to live in, passionate about how technology can improve the lives of those most in need. 
-![Action](/assets/Personal/Fibreglass.JPG)
+![Action](/assets/personal/Fibreglass.JPG)
 
 ### Education
 
