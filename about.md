@@ -11,12 +11,14 @@ An engineer striving to make the world a better place to live in, passionate abo
 
 `2021-`
 __Master of Engineering (Mechanical with Aerospace)__
+
 **University of Melbourne**
 
 *Coursework* - turbulence, fluid mechanics, propulsion, aeroelasticity and aerospace control
 
 `2018-2020`
 __Bachelor of Science (Mechanical & Electrical Systems)__
+
 **University of Melbourne**
 
 *Coursework* - mathematical modelling and abstraction, problem-solving and design skills as a basis for understanding electrical phenomena, construction of simulations and laboratory experiments
