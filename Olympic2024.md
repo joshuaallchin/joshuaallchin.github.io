@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "Olympic 2024"
-excerpt_separator: "<!--more-->"
+title: Olympic
+sidebar_link: true
 ---
 
 
