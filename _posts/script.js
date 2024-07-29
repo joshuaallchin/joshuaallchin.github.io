@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('https://api.olympics.kevle.xyz/medals?country=uzb')
         .then(response => response.json())
         .then(data => {
+            console.log('Data fetched:', data); // Debugging line
             updateContent(data);
         })
         .catch(error => console.error('Error fetching data:', error));
