@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             data[person] = teams[person].map(country => {
                 const result = results[resultIndex].results[0];
                 resultIndex++;
-                if (!result || !result.medals) {
+                if (!result) {
                     return { country: { code: country, name: country }, medals: { gold: 0, silver: 0, bronze: 0 } };
                 } else {
                     return result;
