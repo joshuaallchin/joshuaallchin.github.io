@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const teams = {
-        'Annemarie': ['CAN', 'AUS', 'ESP'],
+        'Annemarie': ['CAN', 'AUS', 'FIN'],
         'Ben': ['CAN', 'FRA', 'FIJ'],
         'Sena': ['JPN', 'FRA', 'FIJ'],
         'Sean': ['JPN', 'FRA', 'FIJ'],
