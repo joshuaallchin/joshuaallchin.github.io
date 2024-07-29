@@ -1,1 +1,13 @@
-Clean
+---
+layout: page
+title: "Olympic 2024"
+excerpt_separator: "<!--more-->"
+---
+
+
+# Medal Table for Uzbekistan
+
+<div id="lastUpdated"></div>
+<div id="medalTable"></div>
+
+<script src="script.js"></script>
