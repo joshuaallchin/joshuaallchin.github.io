@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const teams = {
-        'Annemarie': ['CAN', 'AUS', 'FIN'],
-        'Ben': ['CAN', 'FRA', 'FIJ'],
-        'Sena': ['JPN', 'FRA', 'FIJ'],
-        'Sean': ['JPN', 'FRA', 'FIJ'],
-        'Deva': ['JPN', 'FRA', 'FIJ'],
-        'Josh': ['JPN', 'FRA', 'FIJ'],
-        'Piya': ['JPN', 'FRA', 'FIJ'],
-        'Shione': ['JPN', 'FRA', 'FIJ']
+        'Annemarie': ['GBR', 'ESP', 'SWE', 'FIN'],
+        'Ben': ['CAN', 'KOR', 'POL', 'BEL'],
+        'Sena': ['GER', 'ITA', 'UKR','CZE'],
+        'Sean': ['MEX', 'NZL', 'JAM', 'THA'],
+        'Deva': ['AUS', 'BRA', 'ROU', 'GRE' ],
+        'Josh': ['NED', 'HUN', 'TUR', 'GEO'],
+        'Piya': ['FRA', 'SUI', 'DEN','NOR'],
+        'Shione': ['JPN', 'ETH', 'KEN', 'IRI' ]
     };
     
     const promises = [];
