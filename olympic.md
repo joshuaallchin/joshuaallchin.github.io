@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: hiddenpage
 title: Olympic
 sidebar_link: true
 ---
@@ -10,4 +10,4 @@ sidebar_link: true
 <div id="lastUpdated"></div>
 <div id="medalTable"></div>
 
-<script src="script.js"></script>
+<script src="olympic.js"></script>
