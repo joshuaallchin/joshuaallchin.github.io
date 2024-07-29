@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const teams = {
-        'Bob': ['Canada', 'Australia', 'Panama'],
-        'Bill': ['Japan', 'China', 'Fiji']
+        'Bob': ['CAN', 'AUS', 'ESP'],
+        'Bill': ['JAP', 'FRA', 'FIJ']
     };
 
     const promises = [];
