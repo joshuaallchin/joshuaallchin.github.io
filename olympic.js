@@ -103,3 +103,4 @@ function updateContent(data) {
     `;
 
     container.innerHTML = tableContent;
+}
