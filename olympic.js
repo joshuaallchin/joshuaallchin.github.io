@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Piya': ['JPN', 'FRA', 'FIJ'],
         'Shione': ['JPN', 'FRA', 'FIJ']
     };
-
+    
     const promises = [];
 
     for (const person in teams) {
@@ -24,9 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let resultIndex = 0;
         for (const person in teams) {
             data[person] = teams[person].map(country => {
-                const result = results[resultIndex].results[0];
+                const result = results[resultIndex];
                 resultIndex++;
-                return result ? result : { country: { code: country, name: country }, medals: { gold: 0, silver: 0, bronze: 0 } };
+                if (result.results.length === 0) {
+                    return { country: { code: country, name: country }, medals: { gold: 0, silver: 0, bronze: 0 } };
+                } else {
+                    return result.results[0];
+                }
             });
         }
         updateContent(data);
@@ -99,4 +103,3 @@ function updateContent(data) {
     `;
 
     container.innerHTML = tableContent;
-}
