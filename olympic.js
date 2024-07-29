@@ -1,7 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const teams = {
-        'Bob': ['CAN', 'AUS', 'ESP'],
-        'Bill': ['JPN', 'FRA', 'FIJ']
+        'Annemarie': ['CAN', 'AUS', 'ESP'],
+        'Ben': ['CAN', 'FRA', 'FIJ'],
+        'Sena': ['JPN', 'FRA', 'FIJ'],
+        'Sean': ['JPN', 'FRA', 'FIJ'],
+        'Deva': ['JPN', 'FRA', 'FIJ'],
+        'Josh': ['JPN', 'FRA', 'FIJ'],
+        'Piya': ['JPN', 'FRA', 'FIJ'],
+        'Shione': ['JPN', 'FRA', 'FIJ']
     };
 
     const promises = [];
@@ -20,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             data[person] = teams[person].map(country => {
                 const result = results[resultIndex].results[0];
                 resultIndex++;
-                return result;
+                return result ? result : { country: { code: country, name: country }, medals: { gold: 0, silver: 0, bronze: 0 } };
             });
         }
         updateContent(data);
