@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Piya': ['FRA', 'SUI', 'DEN','NOR'],
         'Shione': ['JPN', 'ETH', 'KEN', 'IRI' ]
     };
-    
+
     const promises = [];
 
     for (const person in teams) {
@@ -24,12 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let resultIndex = 0;
         for (const person in teams) {
             data[person] = teams[person].map(country => {
-                const result = results[resultIndex];
+                const result = results[resultIndex].results[0];
                 resultIndex++;
-                if (result.results.length === 0) {
+                if (!result || !result.medals) {
                     return { country: { code: country, name: country }, medals: { gold: 0, silver: 0, bronze: 0 } };
                 } else {
-                    return result.results[0];
+                    return result;
                 }
             });
         }
