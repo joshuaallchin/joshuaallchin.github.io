@@ -2,7 +2,7 @@ const people = {
     'Annmarie': ['GBR', 'ESP', 'SWE', 'FIN'],
     'Ben': ['CAN', 'KOR', 'POL', 'BEL'],
     'Sena': ['GER', 'ITA', 'UKR', 'CZE'],
-    'Sean': ['MEX', 'NZL', 'JAM', 'THA'],
+    'Shorn': ['MEX', 'NZL', 'JAM', 'THA'],
     'Deva': ['AUS', 'BRA', 'ROU', 'GRE'],
     'Josh': ['NED', 'HUN', 'TUR', 'GEO'],
     'Piya': ['FRA', 'SUI', 'DEN', 'NOR'],
