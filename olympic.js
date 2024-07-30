@@ -9,6 +9,12 @@ const people = {
         'Shione': ['JPN', 'ETH', 'KEN', 'IRI' ]
     };
 
+const people = {
+    Bob: ["USA", "AUS", "PAN"],
+    Bill: ["JPN", "NZL", "FIJ"]
+    // Add more people and their teams as needed
+};
+
 const fetchCountryCodes = async () => {
     const response = await fetch("https://olympics.com/en/news/paris-2024-olympics-full-list-ioc-national-olympic-committee-codes");
     const text = await response.text();
@@ -30,7 +36,7 @@ const fetchCountryCodes = async () => {
 
 const fetchMedals = async (countryCode, countryMapping) => {
     try {
-        const response = await fetch(`https://api.olympics.kelve.xyz/medals?country=${countryCode}`);
+        const response = await fetch(`https://api.olympics.kevle.xyz/medals?country=${countryCode}`);
         const data = await response.json();
         const results = data.results[0];
 
@@ -85,14 +91,16 @@ const updateContent = async () => {
     headerRow.innerHTML = "<th style='border: 1px solid black;'>Person</th><th style='border: 1px solid black;'>Countries</th><th style='border: 1px solid black;'>Total Points</th>";
 
     medalData.forEach(({ person, medals, totalPoints }) => {
+        // Create a row for the person's name and total points
         const row = table.insertRow();
-        const cell = row.insertCell();
-        cell.rowSpan = medals.length;
-        cell.textContent = person;
-        cell.style.border = "1px solid black";
-        cell.style.padding = "5px";
+        const personCell = row.insertCell();
+        personCell.rowSpan = medals.length + 1; // Span to cover all country rows
+        personCell.textContent = person;
+        personCell.style.border = "1px solid black";
+        personCell.style.padding = "5px";
 
         const countriesCell = row.insertCell();
+        countriesCell.rowSpan = medals.length + 1; // Span to cover all country rows
         countriesCell.style.border = "1px solid black";
         countriesCell.style.padding = "5px";
         const countriesTable = document.createElement("table");
@@ -117,10 +125,15 @@ const updateContent = async () => {
         });
 
         countriesCell.appendChild(countriesTable);
+        
         const pointsCell = row.insertCell();
+        pointsCell.rowSpan = medals.length + 1; // Span to cover all country rows
         pointsCell.textContent = totalPoints;
         pointsCell.style.border = "1px solid black";
         pointsCell.style.padding = "5px";
+
+        // Add additional rows for each country
+        medals.forEach(() => table.insertRow()); // Add empty rows to maintain alignment
     });
 
     document.body.appendChild(table);
