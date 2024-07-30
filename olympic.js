@@ -104,9 +104,9 @@ const updateContent = async () => {
     table.style.fontSize = "16px"; // Larger text size for overall table
 
     const headerRow = table.insertRow();
-    headerRow.innerHTML = `<th style='border: 1px solid black; text-align: left; padding: 8px;'>Person</th>
+    headerRow.innerHTML = `<th style='border: 1px solid black; text-align: left; padding: 3px;'>Person</th>
                             <th style='border: 1px solid black; text-align: left; padding: 8px;'>Countries</th>
-                            <th style='border: 1px solid black; text-align: left; padding: 8px;'>Total Points</th>`;
+                            <th style='border: 1px solid black; text-align: left; padding: 3px;'>Total Points</th>`;
 
     medalData.forEach(({ person, medals, totalPoints }) => {
         const row = table.insertRow();
@@ -114,8 +114,8 @@ const updateContent = async () => {
         personCell.rowSpan = medals.length + 1;
         personCell.textContent = person;
         personCell.style.border = "1px solid black";
-        personCell.style.padding = "8px";
-        personCell.style.fontSize = "18px"; // Larger text size for person's name
+        personCell.style.padding = "3px";
+        personCell.style.fontSize = "30px"; // Larger text size for person's name
 
         const countriesCell = row.insertCell();
         countriesCell.rowSpan = medals.length + 1;
@@ -152,8 +152,8 @@ const updateContent = async () => {
         pointsCell.rowSpan = medals.length + 1;
         pointsCell.textContent = totalPoints;
         pointsCell.style.border = "1px solid black";
-        pointsCell.style.padding = "8px";
-        pointsCell.style.fontSize = "18px"; // Larger text size for total points
+        pointsCell.style.padding = "3px";
+        pointsCell.style.fontSize = "30px"; // Larger text size for total points
 
         medals.forEach(() => table.insertRow()); // Add empty rows to maintain alignment
     });
