@@ -10,97 +10,86 @@ document.addEventListener('DOMContentLoaded', () => {
         'Shione': ['JPN', 'ETH', 'KEN', 'IRI' ]
     };
 
-    const promises = [];
+const fetchCountryCodes = async () => {
+    const response = await fetch("https://en.wikipedia.org/wiki/List_of_IOC_country_codes");
+    const text = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, "text/html");
+    const tableRows = doc.querySelectorAll(".wikitable tbody tr");
+    const countryMapping = {};
 
-    for (const person in teams) {
-        teams[person].forEach(country => {
-            const url = `https://api.olympics.kevle.xyz/medals?country=${country.toLowerCase()}`;
-            promises.push(fetch(url).then(response => response.json()));
-        });
-    }
-
-    Promise.all(promises).then(results => {
-        const data = {};
-        let resultIndex = 0;
-        for (const person in teams) {
-            data[person] = teams[person].map(country => {
-                const result = results[resultIndex].results[0];
-                resultIndex++;
-                if (!result) {
-                    return { country: { code: country, name: country }, medals: { gold: 0, silver: 0, bronze: 0 } };
-                } else {
-                    return result;
-                }
-            });
+    tableRows.forEach(row => {
+        const cells = row.querySelectorAll("td");
+        if (cells.length > 1) {
+            const iocCode = cells[0].textContent.trim();
+            const countryName = cells[1].textContent.trim();
+            countryMapping[iocCode] = countryName;
         }
-        updateContent(data);
-    }).catch(error => console.error('Error fetching data:', error));
-});
-
-function updateContent(data) {
-    const container = document.getElementById('medalTable');
-    const personData = [];
-
-    for (const person in data) {
-        let totalPoints = 0;
-        const countriesMedals = data[person].map(countryData => {
-            const { country, medals } = countryData;
-            const { gold, silver, bronze } = medals;
-            const countryPoints = (gold * 3) + (silver * 2) + (bronze * 1);
-            totalPoints += countryPoints;
-            return {
-                country: country.name,
-                gold,
-                silver,
-                bronze,
-                countryPoints
-            };
-        });
-
-        personData.push({ person, totalPoints, countriesMedals });
-    }
-
-    personData.sort((a, b) => b.totalPoints - a.totalPoints);
-
-    let tableContent = `
-        <table>
-            <thead>
-                <tr>
-                    <th>Person</th>
-                    <th>Countries and Medals</th>
-                    <th>Total Points</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
-    personData.forEach(person => {
-        let countriesMedals = '<table>';
-        person.countriesMedals.forEach(countryData => {
-            countriesMedals += `
-                <tr>
-                    <td>${countryData.country}</td>
-                    <td>Gold: ${countryData.gold}</td>
-                    <td>Silver: ${countryData.silver}</td>
-                    <td>Bronze: ${countryData.bronze}</td>
-                </tr>
-            `;
-        });
-        countriesMedals += '</table>';
-
-        tableContent += `
-            <tr>
-                <td>${person.person}</td>
-                <td>${countriesMedals}</td>
-                <td>${person.totalPoints}</td>
-            </tr>
-        `;
     });
 
-    tableContent += `
-            </tbody>
-        </table>
-    `;
+    return countryMapping;
+};
 
-    container.innerHTML = tableContent;
-}
+const fetchMedals = async (countryCode, countryMapping) => {
+    try {
+        const response = await fetch(`https://api.olympics.kelve.xyz/medals?country=${countryCode}`);
+        const data = await response.json();
+        const results = data.results[0];
+
+        if (Object.keys(results).length === 0) {
+            return {
+                name: countryMapping[countryCode] || countryCode,
+                gold: 0,
+                silver: 0,
+                bronze: 0,
+                total: 0
+            };
+        }
+
+        const { gold, silver, bronze } = results.medals;
+        return {
+            name: results.country.name,
+            gold,
+            silver,
+            bronze,
+            total: gold * 3 + silver * 2 + bronze
+        };
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return {
+            name: countryMapping[countryCode] || countryCode,
+            gold: 0,
+            silver: 0,
+            bronze: 0,
+            total: 0
+        };
+    }
+};
+
+const updateContent = async () => {
+    const countryMapping = await fetchCountryCodes();
+    const medalData = await Promise.all(
+        Object.entries(people).map(async ([person, countries]) => {
+            const medals = await Promise.all(countries.map(countryCode => fetchMedals(countryCode, countryMapping)));
+            const totalPoints = medals.reduce((sum, country) => sum + country.total, 0);
+            return { person, medals, totalPoints };
+        })
+    );
+
+    medalData.sort((a, b) => b.totalPoints - a.totalPoints);
+
+    const table = document.createElement("table");
+    const headerRow = table.insertRow();
+    headerRow.innerHTML = "<th>Person</th><th>Country</th><th>Gold</th><th>Silver</th><th>Bronze</th><th>Total Points</th>";
+
+    medalData.forEach(({ person, medals }) => {
+        medals.forEach(({ name, gold, silver, bronze, total }) => {
+            const row = table.insertRow();
+            row.innerHTML = `<td>${person}</td><td>${name}</td><td>${gold}</td><td>${silver}</td><td>${bronze}</td><td>${total}</td>`;
+        });
+    });
+
+    document.body.appendChild(table);
+};
+
+updateContent();
