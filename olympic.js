@@ -30,7 +30,7 @@ const fetchCountryCodes = async () => {
 
 const fetchMedals = async (countryCode, countryMapping) => {
     try {
-        const response = await fetch(`https://api.olympics.kevle.xyz/medals?country=${countryCode}`);
+        const response = await fetch(`https://api.olympics.kelve.xyz/medals?country=${countryCode}`);
         const data = await response.json();
         const results = data.results[0];
 
@@ -77,29 +77,39 @@ const updateContent = async () => {
     medalData.sort((a, b) => b.totalPoints - a.totalPoints);
 
     const table = document.createElement("table");
+    table.style.borderCollapse = "collapse";
+    table.style.width = "100%";
+    table.style.border = "1px solid black";
+
     const headerRow = table.insertRow();
-    headerRow.innerHTML = "<th>Person</th><th>Countries</th><th>Total Points</th>";
+    headerRow.innerHTML = "<th style='border: 1px solid black;'>Person</th><th style='border: 1px solid black;'>Countries</th><th style='border: 1px solid black;'>Total Points</th>";
 
     medalData.forEach(({ person, medals, totalPoints }) => {
         const row = table.insertRow();
         const cell = row.insertCell();
         cell.rowSpan = medals.length;
         cell.textContent = person;
+        cell.style.border = "1px solid black";
+        cell.style.padding = "5px";
 
         const countriesCell = row.insertCell();
+        countriesCell.style.border = "1px solid black";
+        countriesCell.style.padding = "5px";
         const countriesTable = document.createElement("table");
         countriesTable.style.borderCollapse = "collapse";
-        countriesTable.style.border = "1px solid black";
+        countriesTable.style.width = "100%";
 
         medals.forEach(({ name, gold, silver, bronze }) => {
             const countryRow = countriesTable.insertRow();
             const countryCell = countryRow.insertCell();
-            countryCell.colSpan = 3;
+            countryCell.colSpan = 1;
+            countryCell.style.border = "1px solid black";
+            countryCell.style.padding = "5px";
             countryCell.innerHTML = `<div style="border-bottom: 1px solid black; text-align: center;">${name}</div>
                                      <div style="display: flex; justify-content: space-around;">
-                                         <div style="border-right: 1px solid black; text-align: center;">Gold: ${gold}</div>
-                                         <div style="border-right: 1px solid black; text-align: center;">Silver: ${silver}</div>
-                                         <div style="text-align: center;">Bronze: ${bronze}</div>
+                                         <div style="text-align: center;">🏅 ${gold}</div>
+                                         <div style="text-align: center;">🥈 ${silver}</div>
+                                         <div style="text-align: center;">🥉 ${bronze}</div>
                                      </div>`;
 
             countryCell.style.border = "1px solid black";
@@ -109,6 +119,8 @@ const updateContent = async () => {
         countriesCell.appendChild(countriesTable);
         const pointsCell = row.insertCell();
         pointsCell.textContent = totalPoints;
+        pointsCell.style.border = "1px solid black";
+        pointsCell.style.padding = "5px";
     });
 
     document.body.appendChild(table);
