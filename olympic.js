@@ -1,37 +1,3 @@
-const fetchSchedule = async (url) => {
-    try {
-        const response = await fetch(url);
-        const text = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, "text/html");
-        return doc;
-    } catch (error) {
-        console.error("Error fetching schedule data:", error);
-        return null;
-    }
-};
-
-const extractMatches = (doc, countries) => {
-    const matches = [];
-    const matchElements = doc.querySelectorAll(".match-element-class"); // Adjust selector based on actual HTML structure
-
-    matchElements.forEach(matchElement => {
-        const matchInfo = {
-            time: matchElement.querySelector(".time-class").textContent, // Adjust selector
-            event: matchElement.querySelector(".event-class").textContent, // Adjust selector
-            teams: matchElement.querySelector(".teams-class").textContent // Adjust selector
-        };
-
-        countries.forEach(country => {
-            if (matchInfo.teams.includes(country)) {
-                matches.push(matchInfo);
-            }
-        });
-    });
-
-    return matches;
-};
-
 const people = {
     'Annemarie': ['GBR', 'ESP', 'SWE', 'FIN'],
     'Ben': ['CAN', 'KOR', 'POL', 'BEL'],
