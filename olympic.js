@@ -1,5 +1,5 @@
 const people = {
-    'Annemarie': ['GBR', 'ESP', 'SWE', 'FIN'],
+    'Annmarie': ['GBR', 'ESP', 'SWE', 'FIN'],
     'Ben': ['CAN', 'KOR', 'POL', 'BEL'],
     'Sena': ['GER', 'ITA', 'UKR', 'CZE'],
     'Sean': ['MEX', 'NZL', 'JAM', 'THA'],
