@@ -115,7 +115,7 @@ const updateContent = async () => {
         personCell.textContent = person;
         personCell.style.border = "1px solid black";
         personCell.style.padding = "3px";
-        personCell.style.fontSize = "20px"; // Adjusted text size for person's name
+        personCell.style.fontSize = "40px"; // Adjusted text size for person's name
         personCell.style.textAlign = "center";
 
         const countriesCell = row.insertCell();
@@ -137,7 +137,7 @@ const updateContent = async () => {
 
             // Adjust font sizes for better readability
             countryCell.innerHTML = `<div style="display: flex; justify-content: space-around; align-items: center;">
-                                         <div style="text-align: center; font-size: 24px;">${name}</div>
+                                         <div style="text-align: center; font-size: 30px;">${name}</div>
                                          <div style="text-align: center; font-size: 18px;">🏅 ${gold}</div>
                                          <div style="text-align: center; font-size: 18px;">🥈 ${silver}</div>
                                          <div style="text-align: center; font-size: 18px;">🥉 ${bronze}</div>
@@ -154,7 +154,7 @@ const updateContent = async () => {
         pointsCell.textContent = totalPoints;
         pointsCell.style.border = "1px solid black";
         pointsCell.style.padding = "3px";
-        pointsCell.style.fontSize = "20px"; // Adjusted text size for total points
+        pointsCell.style.fontSize = "40px"; // Adjusted text size for total points
         pointsCell.style.textAlign = "center";
 
         medals.forEach(() => table.insertRow()); // Add empty rows to maintain alignment
