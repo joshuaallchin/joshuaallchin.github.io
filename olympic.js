@@ -22,22 +22,26 @@ const flagEmojis = {
 };
 
 const fetchCountryCodes = async () => {
-    const response = await fetch("https://olympics.com/en/news/paris-2024-olympics-full-list-ioc-national-olympic-committee-codes");
-    const text = await response.text();
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(text, "text/html");
-    const countryMapping = {};
+    try {
+        const response = await fetch("https://olympics.com/en/news/paris-2024-olympics-full-list-ioc-national-olympic-committee-codes");
+        const text = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, "text/html");
+        const countryMapping = {};
 
-    doc.querySelectorAll(".news-article p").forEach(paragraph => {
-        const parts = paragraph.textContent.split(': ');
-        if (parts.length === 2) {
-            const iocCode = parts[0].trim();
-            const countryName = parts[1].trim();
-            countryMapping[iocCode] = countryName;
-        }
-    });
+        doc.querySelectorAll(".news-article p").forEach(paragraph => {
+            const parts = paragraph.textContent.split(': ');
+            if (parts.length === 2) {
+                const iocCode = parts[0].trim();
+                const countryName = parts[1].trim();
+                countryMapping[iocCode] = countryName;
+            }
+        });
 
-    return countryMapping;
+        return countryMapping;
+    } catch (error) {
+        console.error("Error fetching country codes:", error);
+    }
 };
 
 const fetchMedals = async (countryCode, countryMapping) => {
@@ -65,7 +69,7 @@ const fetchMedals = async (countryCode, countryMapping) => {
             total: gold * 3 + silver * 2 + bronze
         };
     } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching medals data:", error);
         return {
             name: flagEmojis[countryCode] || countryCode,
             gold: 0,
@@ -78,6 +82,11 @@ const fetchMedals = async (countryCode, countryMapping) => {
 
 const updateContent = async () => {
     const countryMapping = await fetchCountryCodes();
+    if (!countryMapping) {
+        console.error("Country mapping is not available.");
+        return;
+    }
+
     const medalData = await Promise.all(
         Object.entries(people).map(async ([person, countries]) => {
             const medals = await Promise.all(countries.map(countryCode => fetchMedals(countryCode, countryMapping)));
@@ -137,8 +146,11 @@ const updateContent = async () => {
         pointsCell.style.border = "1px solid black";
         pointsCell.style.padding = "3px";
 
-        medals.forEach(() => table.insertRow());
+        medals.forEach(() => table.insertRow()); // Add empty rows to maintain alignment
     });
 
     document.body.appendChild(table);
 };
+
+// Call updateContent to initialize the table
+updateContent();
