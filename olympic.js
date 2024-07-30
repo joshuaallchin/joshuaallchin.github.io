@@ -22,62 +22,19 @@ const flagEmojis = {
 };
 
 const fetchCountryCodes = async () => {
-    try {
-        const response = await fetch("https://olympics.com/en/news/paris-2024-olympics-full-list-ioc-national-olympic-committee-codes");
-        const text = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, "text/html");
-        const countryMapping = {};
-
-        doc.querySelectorAll(".news-article p").forEach(paragraph => {
-            const parts = paragraph.textContent.split(': ');
-            if (parts.length === 2) {
-                const iocCode = parts[0].trim();
-                const countryName = parts[1].trim();
-                countryMapping[iocCode] = countryName;
-            }
-        });
-
-        return countryMapping;
-    } catch (error) {
-        console.error("Error fetching country codes:", error);
-    }
+    // Placeholder fetch function for testing
+    return flagEmojis;
 };
 
-const fetchMedals = async (countryCode, countryMapping) => {
-    try {
-        const response = await fetch(`https://api.olympics.kevle.xyz/medals?country=${countryCode}`);
-        const data = await response.json();
-        const results = data.results[0];
-
-        if (!results.country) {
-            return {
-                name: flagEmojis[countryCode] || countryCode,
-                gold: 0,
-                silver: 0,
-                bronze: 0,
-                total: 0
-            };
-        }
-
-        const { gold, silver, bronze } = results.medals;
-        return {
-            name: flagEmojis[countryCode] || results.country.name,
-            gold,
-            silver,
-            bronze,
-            total: gold * 3 + silver * 2 + bronze
-        };
-    } catch (error) {
-        console.error("Error fetching medals data:", error);
-        return {
-            name: flagEmojis[countryCode] || countryCode,
-            gold: 0,
-            silver: 0,
-            bronze: 0,
-            total: 0
-        };
-    }
+const fetchMedals = async (countryCode) => {
+    // Placeholder fetch function for testing
+    return {
+        name: flagEmojis[countryCode] || countryCode,
+        gold: Math.floor(Math.random() * 3),
+        silver: Math.floor(Math.random() * 3),
+        bronze: Math.floor(Math.random() * 3),
+        total: 0
+    };
 };
 
 const updateContent = async () => {
@@ -89,7 +46,7 @@ const updateContent = async () => {
 
     const medalData = await Promise.all(
         Object.entries(people).map(async ([person, countries]) => {
-            const medals = await Promise.all(countries.map(countryCode => fetchMedals(countryCode, countryMapping)));
+            const medals = await Promise.all(countries.map(countryCode => fetchMedals(countryCode)));
             const totalPoints = medals.reduce((sum, country) => sum + country.total, 0);
             return { person, medals, totalPoints };
         })
@@ -134,7 +91,7 @@ const updateContent = async () => {
             countryCell.style.padding = "4px";
 
             // Place flag before medals
-            countryCell.innerHTML = `<div style="text-align: center; font-size: 30px;">${name}</div>
+            countryCell.innerHTML = `<div style="text-align: center; font-size: 24px;">${name}</div>
                                      <div style="display: flex; align-items: center; justify-content: space-around; font-size: 16px;">
                                          <div style="text-align: center; font-size: 24px;">${flagEmojis[countryCode]}</div>
                                          <div style="text-align: center;">🏅 ${gold}</div>
