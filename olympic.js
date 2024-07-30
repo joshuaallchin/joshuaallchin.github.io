@@ -1,3 +1,37 @@
+const fetchSchedule = async (url) => {
+    try {
+        const response = await fetch(url);
+        const text = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, "text/html");
+        return doc;
+    } catch (error) {
+        console.error("Error fetching schedule data:", error);
+        return null;
+    }
+};
+
+const extractMatches = (doc, countries) => {
+    const matches = [];
+    const matchElements = doc.querySelectorAll(".match-element-class"); // Adjust selector based on actual HTML structure
+
+    matchElements.forEach(matchElement => {
+        const matchInfo = {
+            time: matchElement.querySelector(".time-class").textContent, // Adjust selector
+            event: matchElement.querySelector(".event-class").textContent, // Adjust selector
+            teams: matchElement.querySelector(".teams-class").textContent // Adjust selector
+        };
+
+        countries.forEach(country => {
+            if (matchInfo.teams.includes(country)) {
+                matches.push(matchInfo);
+            }
+        });
+    });
+
+    return matches;
+};
+
 const people = {
     'Annemarie': ['GBR', 'ESP', 'SWE', 'FIN'],
     'Ben': ['CAN', 'KOR', 'POL', 'BEL'],
@@ -80,6 +114,40 @@ const fetchMedals = async (countryCode, countryMapping) => {
     }
 };
 
+const fetchSchedule = async (url) => {
+    try {
+        const response = await fetch(url);
+        const text = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, "text/html");
+        return doc;
+    } catch (error) {
+        console.error("Error fetching schedule data:", error);
+        return null;
+    }
+};
+
+const extractMatches = (doc, countries) => {
+    const matches = [];
+    const matchElements = doc.querySelectorAll(".match-element-class"); // Adjust selector based on actual HTML structure
+
+    matchElements.forEach(matchElement => {
+        const matchInfo = {
+            time: matchElement.querySelector(".time-class").textContent, // Adjust selector
+            event: matchElement.querySelector(".event-class").textContent, // Adjust selector
+            teams: matchElement.querySelector(".teams-class").textContent // Adjust selector
+        };
+
+        countries.forEach(country => {
+            if (matchInfo.teams.includes(country)) {
+                matches.push(matchInfo);
+            }
+        });
+    });
+
+    return matches;
+};
+
 const updateContent = async () => {
     const countryMapping = await fetchCountryCodes();
     if (!countryMapping) {
@@ -98,70 +166,64 @@ const updateContent = async () => {
     medalData.sort((a, b) => b.totalPoints - a.totalPoints);
 
     const table = document.createElement("table");
-    table.style.borderCollapse = "collapse";
-    table.style.width = "100%";
-    table.style.border = "1px solid black";
-    table.style.fontSize = "16px"; // Larger text size for overall table
 
     const headerRow = table.insertRow();
-    headerRow.innerHTML = `<th style='border: 1px solid black; text-align: center; padding: 3px;'>Person</th>
-                            <th style='border: 1px solid black; text-align: center; padding: 8px;'>Countries</th>
-                            <th style='border: 1px solid black; text-align: center; padding: 3px;'>Total Points</th>`;
+    headerRow.innerHTML = `<th>Person</th>
+                           <th>Countries</th>
+                           <th>Total Points</th>`;
 
     medalData.forEach(({ person, medals, totalPoints }) => {
         const row = table.insertRow();
         const personCell = row.insertCell();
         personCell.rowSpan = medals.length + 1;
         personCell.textContent = person;
-        personCell.style.border = "1px solid black";
-        personCell.style.padding = "3px";
-        personCell.style.fontSize = "40px"; // Adjusted text size for person's name
-        personCell.style.textAlign = "center";
+        personCell.className = 'person-cell';
 
         const countriesCell = row.insertCell();
         countriesCell.rowSpan = medals.length + 1;
-        countriesCell.style.border = "1px solid black";
-        countriesCell.style.padding = "5px";
-        countriesCell.style.fontSize = "18px"; // Adjusted text size for countries
+        countriesCell.className = 'countries-cell';
 
         const countriesTable = document.createElement("table");
-        countriesTable.style.borderCollapse = "collapse";
-        countriesTable.style.width = "100%";
 
         medals.forEach(({ name, gold, silver, bronze }) => {
             const countryRow = countriesTable.insertRow();
             const countryCell = countryRow.insertCell();
             countryCell.colSpan = 1;
-            countryCell.style.border = "1px solid black";
-            countryCell.style.padding = "3px";
+            countryCell.className = 'country-name';
 
-            // Adjust font sizes for better readability
             countryCell.innerHTML = `<div style="display: flex; justify-content: space-around; align-items: center;">
-                                         <div style="text-align: center; font-size: 30px;">${name}</div>
-                                         <div style="text-align: center; font-size: 18px;">🏅 ${gold}</div>
-                                         <div style="text-align: center; font-size: 18px;">🥈 ${silver}</div>
-                                         <div style="text-align: center; font-size: 18px;">🥉 ${bronze}</div>
+                                         <div>${name}</div>
+                                         <div class="medal-count">🏅 ${gold}</div>
+                                         <div class="medal-count">🥈 ${silver}</div>
+                                         <div class="medal-count">🥉 ${bronze}</div>
                                      </div>`;
-
-            countryCell.style.border = "1px solid black";
-            countryCell.style.padding = "5px";
         });
 
         countriesCell.appendChild(countriesTable);
-        
+
         const pointsCell = row.insertCell();
         pointsCell.rowSpan = medals.length + 1;
         pointsCell.textContent = totalPoints;
-        pointsCell.style.border = "1px solid black";
-        pointsCell.style.padding = "3px";
-        pointsCell.style.fontSize = "40px"; // Adjusted text size for total points
-        pointsCell.style.textAlign = "center";
+        pointsCell.className = 'points-cell';
 
         medals.forEach(() => table.insertRow()); // Add empty rows to maintain alignment
     });
 
-    document.body.appendChild(table);
+    document.getElementById('medalTable').appendChild(table);
+
+    const scheduleDoc = await fetchSchedule("https://olympics.com/en/paris-2024/schedule/31-july?medalEvents=true");
+    const countries = Object.values(people).flat();
+    const matches = extractMatches(scheduleDoc, countries);
+
+    const upcomingMatch = matches[0]; // Assuming the first match is the next scheduled one
+
+    const matchInfoDiv = document.createElement("div");
+    matchInfoDiv.textContent = `${upcomingMatch.time} ${upcomingMatch.event} - ${upcomingMatch.teams}`;
+    document.getElementById('medalTable').appendChild(matchInfoDiv);
 };
+
+// Call updateContent to initialize the table and fetch schedule
+updateContent();
 
 // Call updateContent to initialize the table
 updateContent();
