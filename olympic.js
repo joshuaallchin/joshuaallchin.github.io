@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const teams = {
+const people = {
         'Annemarie': ['GBR', 'ESP', 'SWE', 'FIN'],
         'Ben': ['CAN', 'KOR', 'POL', 'BEL'],
         'Sena': ['GER', 'ITA', 'UKR','CZE'],
