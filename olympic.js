@@ -181,15 +181,14 @@ const updateContent = async () => {
     const countries = Object.values(people).flat();
     const matches = extractMatches(scheduleDoc, countries);
 
-    const upcomingMatch = matches[0]; // Assuming the first match is the next scheduled one
+    if (matches.length > 0) {
+        const upcomingMatch = matches[0]; // Assuming the first match is the next scheduled one
 
-    const matchInfoDiv = document.createElement("div");
-    matchInfoDiv.textContent = `${upcomingMatch.time} ${upcomingMatch.event} - ${upcomingMatch.teams}`;
-    document.getElementById('medalTable').appendChild(matchInfoDiv);
+        const matchInfoDiv = document.createElement("div");
+        matchInfoDiv.textContent = `${upcomingMatch.time} ${upcomingMatch.event} - ${upcomingMatch.teams}`;
+        document.getElementById('nextMatch').appendChild(matchInfoDiv);
+    }
 };
 
 // Call updateContent to initialize the table and fetch schedule
-updateContent();
-
-// Call updateContent to initialize the table
 updateContent();
