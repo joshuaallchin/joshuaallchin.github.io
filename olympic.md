@@ -6,26 +6,12 @@ sidebar_link: false
 
 # Medal Table for Oxley
 
-<div class="banner">
-  <img src="https://olympics.com/en/paris-2024/medals" alt="Paris 2024 Banner" class="banner-image">
-</div>
-
 <div id="medalTable"></div>
+<div id="nextMatch"></div>
 
 <script src="olympic.js"></script>
 
 <style>
-  .banner {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .banner-image {
-    width: 100%;
-    max-width: 800px;
-    height: auto;
-  }
-
   table {
     width: 100%;
     border-collapse: collapse;
