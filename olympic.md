@@ -7,7 +7,6 @@ sidebar_link: false
 # Medal Table for Oxley
 
 <div id="medalTable"></div>
-<div id="nextMatch"></div>
 
 <script src="olympic.js"></script>
 
