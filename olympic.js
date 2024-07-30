@@ -10,18 +10,17 @@ const people = {
     };
 
 const fetchCountryCodes = async () => {
-    const response = await fetch("https://en.wikipedia.org/wiki/List_of_IOC_country_codes");
+    const response = await fetch("https://olympics.com/en/news/paris-2024-olympics-full-list-ioc-national-olympic-committee-codes");
     const text = await response.text();
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, "text/html");
-    const tableRows = doc.querySelectorAll(".wikitable tbody tr");
     const countryMapping = {};
 
-    tableRows.forEach(row => {
-        const cells = row.querySelectorAll("td");
-        if (cells.length > 1) {
-            const iocCode = cells[0].textContent.trim();
-            const countryName = cells[1].textContent.trim();
+    doc.querySelectorAll(".news-article p").forEach(paragraph => {
+        const parts = paragraph.textContent.split(': ');
+        if (parts.length === 2) {
+            const iocCode = parts[0].trim();
+            const countryName = parts[1].trim();
             countryMapping[iocCode] = countryName;
         }
     });
@@ -35,7 +34,7 @@ const fetchMedals = async (countryCode, countryMapping) => {
         const data = await response.json();
         const results = data.results[0];
 
-        if (Object.keys(results).length === 0) {
+        if (!results.country) {
             return {
                 name: countryMapping[countryCode] || countryCode,
                 gold: 0,
