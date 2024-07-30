@@ -4,7 +4,7 @@ title: Olympic
 sidebar_link: false
 ---
 
-# Medal Table for Oxley
+# Oxley Olympics
 
 <div id="medalTable"></div>
 
