@@ -9,12 +9,6 @@ const people = {
         'Shione': ['JPN', 'ETH', 'KEN', 'IRI' ]
     };
 
-const people = {
-    Bob: ["USA", "AUS", "PAN"],
-    Bill: ["JPN", "NZL", "FIJ"]
-    // Add more people and their teams as needed
-};
-
 const fetchCountryCodes = async () => {
     const response = await fetch("https://olympics.com/en/news/paris-2024-olympics-full-list-ioc-national-olympic-committee-codes");
     const text = await response.text();
