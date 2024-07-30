@@ -29,8 +29,8 @@ const fetchCountryCodes = async () => {
 };
 
 const fetchMedals = async (countryCode, countryMapping) => {
-    try {
-        const response = await fetch(`https://api.olympics.kelve.xyz/medals?country=${countryCode}`);
+    try {                            
+        const response = await fetch(`https://api.olympics.kevle.xyz/medals?country=${countryCode}`);
         const data = await response.json();
         const results = data.results[0];
 
