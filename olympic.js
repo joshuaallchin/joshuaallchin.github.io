@@ -80,40 +80,6 @@ const fetchMedals = async (countryCode, countryMapping) => {
     }
 };
 
-const fetchSchedule = async (url) => {
-    try {
-        const response = await fetch(url);
-        const text = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, "text/html");
-        return doc;
-    } catch (error) {
-        console.error("Error fetching schedule data:", error);
-        return null;
-    }
-};
-
-const extractMatches = (doc, countries) => {
-    const matches = [];
-    const matchElements = doc.querySelectorAll(".match-element-class"); // Adjust selector based on actual HTML structure
-
-    matchElements.forEach(matchElement => {
-        const matchInfo = {
-            time: matchElement.querySelector(".time-class").textContent, // Adjust selector
-            event: matchElement.querySelector(".event-class").textContent, // Adjust selector
-            teams: matchElement.querySelector(".teams-class").textContent // Adjust selector
-        };
-
-        countries.forEach(country => {
-            if (matchInfo.teams.includes(country)) {
-                matches.push(matchInfo);
-            }
-        });
-    });
-
-    return matches;
-};
-
 const updateContent = async () => {
     const countryMapping = await fetchCountryCodes();
     if (!countryMapping) {
@@ -176,19 +142,7 @@ const updateContent = async () => {
     });
 
     document.getElementById('medalTable').appendChild(table);
-
-    const scheduleDoc = await fetchSchedule("https://olympics.com/en/paris-2024/schedule/31-july?medalEvents=true");
-    const countries = Object.values(people).flat();
-    const matches = extractMatches(scheduleDoc, countries);
-
-    if (matches.length > 0) {
-        const upcomingMatch = matches[0]; // Assuming the first match is the next scheduled one
-
-        const matchInfoDiv = document.createElement("div");
-        matchInfoDiv.textContent = `${upcomingMatch.time} ${upcomingMatch.event} - ${upcomingMatch.teams}`;
-        document.getElementById('nextMatch').appendChild(matchInfoDiv);
-    }
 };
 
-// Call updateContent to initialize the table and fetch schedule
+// Call updateContent to initialize the table
 updateContent();
