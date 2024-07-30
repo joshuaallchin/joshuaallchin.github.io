@@ -101,12 +101,12 @@ const updateContent = async () => {
     table.style.borderCollapse = "collapse";
     table.style.width = "100%";
     table.style.border = "1px solid black";
-    table.style.fontSize = "16px"; // Larger text size for overall table
+    table.style.fontSize = "18px"; // Larger text size for overall table
 
     const headerRow = table.insertRow();
-    headerRow.innerHTML = `<th style='border: 1px solid black; text-align: left; padding: 8px;'>Person</th>
-                            <th style='border: 1px solid black; text-align: left; padding: 8px;'>Countries</th>
-                            <th style='border: 1px solid black; text-align: left; padding: 8px;'>Total Points</th>`;
+    headerRow.innerHTML = `<th style='border: 1px solid black; text-align: left; padding: 4px;'>Person</th>
+                            <th style='border: 1px solid black; text-align: left; padding: 4px;'>Countries</th>
+                            <th style='border: 1px solid black; text-align: left; padding: 4px;'>Total Points</th>`;
 
     medalData.forEach(({ person, medals, totalPoints }) => {
         const row = table.insertRow();
@@ -114,14 +114,14 @@ const updateContent = async () => {
         personCell.rowSpan = medals.length + 1;
         personCell.textContent = person;
         personCell.style.border = "1px solid black";
-        personCell.style.padding = "8px";
-        personCell.style.fontSize = "18px"; // Larger text size for person's name
+        personCell.style.padding = "4px";
+        personCell.style.fontSize = "22px"; // Larger text size for person's name
 
         const countriesCell = row.insertCell();
         countriesCell.rowSpan = medals.length + 1;
         countriesCell.style.border = "1px solid black";
-        countriesCell.style.padding = "8px";
-        countriesCell.style.fontSize = "18px"; // Larger text size for countries
+        countriesCell.style.padding = "4px";
+        countriesCell.style.fontSize = "22px"; // Larger text size for countries
 
         const countriesTable = document.createElement("table");
         countriesTable.style.borderCollapse = "collapse";
@@ -130,20 +130,20 @@ const updateContent = async () => {
         medals.forEach(({ name, gold, silver, bronze }) => {
             const countryRow = countriesTable.insertRow();
             const countryCell = countryRow.insertCell();
-            countryCell.colSpan = 1;
             countryCell.style.border = "1px solid black";
-            countryCell.style.padding = "5px";
+            countryCell.style.padding = "4px";
 
-            // Make flags bigger, medals and count smaller
-            countryCell.innerHTML = `<div style="border-bottom: 1px solid black; text-align: center; font-size: 24px;">${name}</div>
-                                     <div style="display: flex; justify-content: space-around; font-size: 14px;">
+            // Place flag before medals
+            countryCell.innerHTML = `<div style="text-align: center; font-size: 30px;">${name}</div>
+                                     <div style="display: flex; align-items: center; justify-content: space-around; font-size: 16px;">
+                                         <div style="text-align: center; font-size: 24px;">${flagEmojis[countryCode]}</div>
                                          <div style="text-align: center;">🏅 ${gold}</div>
                                          <div style="text-align: center;">🥈 ${silver}</div>
                                          <div style="text-align: center;">🥉 ${bronze}</div>
                                      </div>`;
 
             countryCell.style.border = "1px solid black";
-            countryCell.style.padding = "5px";
+            countryCell.style.padding = "4px";
         });
 
         countriesCell.appendChild(countriesTable);
@@ -152,8 +152,8 @@ const updateContent = async () => {
         pointsCell.rowSpan = medals.length + 1;
         pointsCell.textContent = totalPoints;
         pointsCell.style.border = "1px solid black";
-        pointsCell.style.padding = "8px";
-        pointsCell.style.fontSize = "18px"; // Larger text size for total points
+        pointsCell.style.padding = "4px";
+        pointsCell.style.fontSize = "22px"; // Larger text size for total points
 
         medals.forEach(() => table.insertRow()); // Add empty rows to maintain alignment
     });
