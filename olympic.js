@@ -101,9 +101,12 @@ const updateContent = async () => {
     table.style.borderCollapse = "collapse";
     table.style.width = "100%";
     table.style.border = "1px solid black";
+    table.style.fontSize = "16px"; // Larger text size for overall table
 
     const headerRow = table.insertRow();
-    headerRow.innerHTML = "<th style='border: 1px solid black;'>Person</th><th style='border: 1px solid black;'>Countries</th><th style='border: 1px solid black;'>Total Points</th>";
+    headerRow.innerHTML = `<th style='border: 1px solid black; text-align: left; padding: 8px;'>Person</th>
+                            <th style='border: 1px solid black; text-align: left; padding: 8px;'>Countries</th>
+                            <th style='border: 1px solid black; text-align: left; padding: 8px;'>Total Points</th>`;
 
     medalData.forEach(({ person, medals, totalPoints }) => {
         const row = table.insertRow();
@@ -111,12 +114,15 @@ const updateContent = async () => {
         personCell.rowSpan = medals.length + 1;
         personCell.textContent = person;
         personCell.style.border = "1px solid black";
-        personCell.style.padding = "1px";
+        personCell.style.padding = "8px";
+        personCell.style.fontSize = "18px"; // Larger text size for person's name
 
         const countriesCell = row.insertCell();
         countriesCell.rowSpan = medals.length + 1;
         countriesCell.style.border = "1px solid black";
-        countriesCell.style.padding = "5px";
+        countriesCell.style.padding = "8px";
+        countriesCell.style.fontSize = "18px"; // Larger text size for countries
+
         const countriesTable = document.createElement("table");
         countriesTable.style.borderCollapse = "collapse";
         countriesTable.style.width = "100%";
@@ -127,8 +133,10 @@ const updateContent = async () => {
             countryCell.colSpan = 1;
             countryCell.style.border = "1px solid black";
             countryCell.style.padding = "5px";
-            countryCell.innerHTML = `<div style="border-bottom: 1px solid black; text-align: center;">${name}</div>
-                                     <div style="display: flex; justify-content: space-around;">
+
+            // Make flags bigger, medals and count smaller
+            countryCell.innerHTML = `<div style="border-bottom: 1px solid black; text-align: center; font-size: 24px;">${name}</div>
+                                     <div style="display: flex; justify-content: space-around; font-size: 14px;">
                                          <div style="text-align: center;">🏅 ${gold}</div>
                                          <div style="text-align: center;">🥈 ${silver}</div>
                                          <div style="text-align: center;">🥉 ${bronze}</div>
@@ -144,7 +152,8 @@ const updateContent = async () => {
         pointsCell.rowSpan = medals.length + 1;
         pointsCell.textContent = totalPoints;
         pointsCell.style.border = "1px solid black";
-        pointsCell.style.padding = "1px";
+        pointsCell.style.padding = "8px";
+        pointsCell.style.fontSize = "18px"; // Larger text size for total points
 
         medals.forEach(() => table.insertRow()); // Add empty rows to maintain alignment
     });
