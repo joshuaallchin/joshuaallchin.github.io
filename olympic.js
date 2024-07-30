@@ -111,7 +111,7 @@ const updateContent = async () => {
         personCell.rowSpan = medals.length + 1;
         personCell.textContent = person;
         personCell.style.border = "1px solid black";
-        personCell.style.padding = "3px";
+        personCell.style.padding = "1px";
 
         const countriesCell = row.insertCell();
         countriesCell.rowSpan = medals.length + 1;
@@ -144,7 +144,7 @@ const updateContent = async () => {
         pointsCell.rowSpan = medals.length + 1;
         pointsCell.textContent = totalPoints;
         pointsCell.style.border = "1px solid black";
-        pointsCell.style.padding = "3px";
+        pointsCell.style.padding = "1px";
 
         medals.forEach(() => table.insertRow()); // Add empty rows to maintain alignment
     });
